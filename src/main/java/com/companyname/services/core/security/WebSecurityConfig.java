@@ -32,7 +32,12 @@ public class WebSecurityConfig {
                     authorizeRequests
                             .requestMatchers(HttpMethod.GET, "/health").permitAll()
                             .requestMatchers(HttpMethod.POST, "/v1/accounts/**").permitAll()
-                            .requestMatchers(HttpMethod.GET, "/v1/employees/**").hasAnyRole(APP_USER)
+                            .requestMatchers(HttpMethod.GET, "/v1/employees/**").permitAll() // TODO: remove
+                            // .requestMatchers(HttpMethod.GET, "/v1/employees/**").hasAnyRole(APP_USER) TODO: Uncomment
+                            .requestMatchers(HttpMethod.GET, "/v1/job-titles/**").permitAll() // TODO: remove
+                            // .requestMatchers(HttpMethod.GET, "/v1/job-titles/**").hasAnyRole(APP_USER) TODO: Uncomment
+                            .requestMatchers(HttpMethod.GET, "/v1/companies/**").permitAll() // TODO: remove
+                            // .requestMatchers(HttpMethod.GET, "/v1/companies/**").hasAnyRole(APP_USER) TODO: uncomment
                             .anyRequest().authenticated();
                 })
                 .csrf(configurer -> {

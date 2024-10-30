@@ -242,7 +242,9 @@ For security purposes, the RSA key is not included with version control. Instead
 #### Start application
 
 ```
->> bin/kc.bat start --https-key-store-file=~/projects/authorization-server/keycloak21.1.2/keycloak21.1.2/conf/server.p12
+>> cd authorization-server/keycloak-21.1.2/keycloak-21.1.2
+
+>> bin/kc.bat start --https-key-store-file=C:/users/{username}/projects/employee-management-service/authorization-server/keycloak-21.1.2/keycloak-21.1.2/conf/server.p12
 ```
 
 

@@ -23,5 +23,11 @@ CREATE TABLE employees (
 );
 
 INSERT INTO job_titles (name) VALUES ('Software Engineer');
+INSERT INTO job_titles (name) VALUES ('DevOps Engineer');
+INSERT INTO job_titles (name) VALUES ('Business Analyst');
+INSERT INTO job_titles (name) VALUES ('Project Manager');
+
 INSERT INTO companies (name) VALUES ('Example Company LLC');
+INSERT INTO companies (name) VALUES ('Company and Sons, Inc');
+
 INSERT INTO employees (first_name, last_name, email_address, salary, job_title_id, company_id) VALUES ('Jon', 'Doe', 'jon.doe@mail.com', 130000.00, 1, 1);
