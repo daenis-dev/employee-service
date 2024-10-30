@@ -1,9 +1,11 @@
 package com.companyname.services.employees.api.controller;
 
 import com.companyname.services.employees.api.behavior.CreateEmployee;
+import com.companyname.services.employees.api.behavior.DeleteEmployee;
 import com.companyname.services.employees.api.behavior.FindAllEmployees;
 import com.companyname.services.employees.api.behavior.UpdateEmployee;
 import com.companyname.services.employees.api.model.CreateEmployeeRequest;
+import com.companyname.services.employees.api.model.DeleteEmployeeRequest;
 import com.companyname.services.employees.api.model.EmployeeDetails;
 import com.companyname.services.employees.api.model.UpdateEmployeeRequest;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,7 @@ public final class EmployeeController {
     private final CreateEmployee createEmployee;
     private final FindAllEmployees findAllEmployees;
     private final UpdateEmployee updateEmployee;
+    private final DeleteEmployee deleteEmployee;
 
     @PostMapping("/v1/employees")
     public ResponseEntity<EmployeeDetails> createEmployee(
@@ -58,5 +61,12 @@ public final class EmployeeController {
                         .withEmailAddress(emailAddress)
                         .withJobTitle(jobTitle)
                         .withSalary(salary)));
+    }
+
+    // TODO: test
+    @DeleteMapping("/v1/employees/{id}")
+    public ResponseEntity<?> deleteEmployee(@PathVariable("id") String id) {
+        deleteEmployee.executeFor(new DeleteEmployeeRequest().withId(id));
+        return ResponseEntity.ok().build();
     }
 }

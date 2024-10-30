@@ -34,12 +34,17 @@ public class WebSecurityConfig {
                             .requestMatchers(HttpMethod.POST, "/v1/accounts/**").permitAll()
                             .requestMatchers(HttpMethod.GET, "/v1/employees/**").permitAll() // TODO: remove
                             // .requestMatchers(HttpMethod.GET, "/v1/employees/**").hasAnyRole(APP_USER) TODO: Uncomment
+                            .requestMatchers(HttpMethod.PUT, "/v1/employees/**").permitAll() // TODO: remove
+                            // .requestMatchers(HttpMethod.PUT, "/v1/employees/**").hasAnyRole(APP_USER) TODO: Uncomment
+                            .requestMatchers(HttpMethod.DELETE, "/v1/employees/**").permitAll() // TODO: remove
+                            // .requestMatchers(HttpMethod.DELETE, "/v1/employees/**").hasAnyRole(APP_USER) TODO: Uncomment
                             .requestMatchers(HttpMethod.GET, "/v1/job-titles/**").permitAll() // TODO: remove
                             // .requestMatchers(HttpMethod.GET, "/v1/job-titles/**").hasAnyRole(APP_USER) TODO: Uncomment
                             .anyRequest().authenticated();
                 })
                 .csrf(configurer -> {
                     configurer.ignoringRequestMatchers("/v1/accounts/**");
+                    configurer.ignoringRequestMatchers("/v1/employees/**");
                 });
         http.oauth2ResourceServer(resourceServer -> {
             resourceServer.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthConverter));
@@ -54,7 +59,7 @@ public class WebSecurityConfig {
     private CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
-        corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS"));
+        corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         corsConfiguration.setAllowedHeaders(Collections.singletonList("*"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", corsConfiguration);

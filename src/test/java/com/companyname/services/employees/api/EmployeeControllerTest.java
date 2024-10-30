@@ -1,6 +1,7 @@
 package com.companyname.services.employees.api;
 
 import com.companyname.services.employees.api.behavior.CreateEmployee;
+import com.companyname.services.employees.api.behavior.DeleteEmployee;
 import com.companyname.services.employees.api.behavior.FindAllEmployees;
 import com.companyname.services.employees.api.behavior.UpdateEmployee;
 import com.companyname.services.employees.api.controller.EmployeeController;
@@ -42,6 +43,9 @@ class EmployeeControllerTest {
     @Mock
     private UpdateEmployee updateEmployee;
 
+    @Mock
+    private DeleteEmployee deleteEmployee;
+
     private MockMvc mockMvc;
 
     @BeforeEach
@@ -55,7 +59,7 @@ class EmployeeControllerTest {
         employeeDetails = new EmployeeDetails(1, firstName, lastName, emailAddress, jobTitle, salary);
 
         mockMvc = MockMvcBuilders
-                .standaloneSetup(new EmployeeController(createEmployee, findAllEmployees, updateEmployee))
+                .standaloneSetup(new EmployeeController(createEmployee, findAllEmployees, updateEmployee, deleteEmployee))
                 .build();
     }
 
