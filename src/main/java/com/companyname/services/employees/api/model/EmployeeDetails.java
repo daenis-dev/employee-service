@@ -11,6 +11,5 @@ public final class EmployeeDetails {
     private String lastName;
     private String emailAddress;
     private String jobTitle;
-    private String company;
     private double salary;
 }

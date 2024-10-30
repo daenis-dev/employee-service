@@ -28,21 +28,18 @@ public class CreateEmployeeIT {
         String theLastName = "Recard";
         String theEmailAddress = "jim.recard@mail.com";
         String theJobTitle = "Software Engineer";
-        String theCompany = "Example Company LLC";
         String theSalary = "200000.00";
         EmployeeDetails theReturnedDetails = createEmployee.executeFor(new CreateEmployeeRequest()
                 .withFirstName(theFirstName)
                 .withLastName(theLastName)
                 .withEmailAddress(theEmailAddress)
                 .withJobTitle(theJobTitle)
-                .withCompany(theCompany)
                 .withSalary(theSalary));
 
         assertThat(theReturnedDetails.getFirstName()).isEqualTo(theFirstName);
         assertThat(theReturnedDetails.getLastName()).isEqualTo(theLastName);
         assertThat(theReturnedDetails.getEmailAddress()).isEqualTo(theEmailAddress);
         assertThat(theReturnedDetails.getJobTitle()).isEqualTo(theJobTitle);
-        assertThat(theReturnedDetails.getCompany()).isEqualTo(theCompany);
         assertThat(theReturnedDetails.getSalary()).isEqualTo(Double.parseDouble(theSalary));
     }
 

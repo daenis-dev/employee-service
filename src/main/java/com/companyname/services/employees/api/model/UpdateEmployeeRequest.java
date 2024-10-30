@@ -12,7 +12,6 @@ public final class UpdateEmployeeRequest {
     private String lastName;
     private String emailAddress;
     private String jobTitle;
-    private String company;
     private double salary;
 
     public UpdateEmployeeRequest withId(String id) {
@@ -59,14 +58,6 @@ public final class UpdateEmployeeRequest {
             throw new InvalidRequestException("Job title required for employee");
         }
         this.jobTitle = jobTitle;
-        return this;
-    }
-
-    public UpdateEmployeeRequest withCompany(String company) {
-        if (company == null || company.isEmpty()) {
-            throw new InvalidRequestException("Company required for employee");
-        }
-        this.company = company;
         return this;
     }
 

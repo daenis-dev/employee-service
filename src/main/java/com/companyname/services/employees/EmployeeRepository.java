@@ -12,6 +12,6 @@ import java.util.Optional;
 @Repository
 interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
-    @Query("SELECT NEW com.companyname.services.employees.api.model.EmployeeDetails(e.id, e.firstName, e.lastName, e.emailAddress, jt.name, c.name, e.salary) FROM Employee e JOIN e.jobTitle jt JOIN e.company c")
+    @Query("SELECT NEW com.companyname.services.employees.api.model.EmployeeDetails(e.id, e.firstName, e.lastName, e.emailAddress, jt.name, e.salary) FROM Employee e JOIN e.jobTitle jt")
     List<EmployeeDetails> findAllEmployeeDetails();
 }

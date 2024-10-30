@@ -28,7 +28,6 @@ public final class EmployeeController {
             @RequestParam("last-name") String lastName,
             @RequestParam("email-address") String emailAddress,
             @RequestParam("job-title") String jobTitle,
-            @RequestParam("company") String company,
             @RequestParam("salary") String salary) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(createEmployee.executeFor(new CreateEmployeeRequest()
@@ -36,7 +35,6 @@ public final class EmployeeController {
                         .withLastName(lastName)
                         .withEmailAddress(emailAddress)
                         .withJobTitle(jobTitle)
-                        .withCompany(company)
                         .withSalary(salary)));
     }
 
@@ -51,7 +49,6 @@ public final class EmployeeController {
                                                           @RequestParam("last-name") String lastName,
                                                           @RequestParam("email-address") String emailAddress,
                                                           @RequestParam("job-title") String jobTitle,
-                                                          @RequestParam("company") String company,
                                                           @RequestParam("salary") String salary) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(updateEmployee.executeFor(new UpdateEmployeeRequest()
@@ -60,7 +57,6 @@ public final class EmployeeController {
                         .withLastName(lastName)
                         .withEmailAddress(emailAddress)
                         .withJobTitle(jobTitle)
-                        .withCompany(company)
                         .withSalary(salary)));
     }
 }

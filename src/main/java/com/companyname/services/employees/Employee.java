@@ -33,14 +33,10 @@ final class Employee {
     @JoinColumn(name = "job_title_id")
     private JobTitle jobTitle;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "company_id")
-    private Company company;
-
     @Column(name = "salary")
     private Double salary;
 
     EmployeeDetails getDetails() {
-        return new EmployeeDetails(id, firstName, lastName, emailAddress, jobTitle.getName(), company.getName(), salary);
+        return new EmployeeDetails(id, firstName, lastName, emailAddress, jobTitle.getName(), salary);
     }
 }

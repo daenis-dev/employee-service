@@ -18,7 +18,6 @@ final class EmployeeService implements CreateEmployee, FindAllEmployees, UpdateE
 
     private final EmployeeRepository employeeRepository;
     private final JobTitleRepository jobTitleRepository;
-    private final CompanyRepository companyRepository;
 
     @Override
     public EmployeeDetails executeFor(CreateEmployeeRequest theRequest) {
@@ -26,7 +25,6 @@ final class EmployeeService implements CreateEmployee, FindAllEmployees, UpdateE
         employee.setFirstName(theRequest.getFirstName());
         employee.setLastName(theRequest.getLastName());
         employee.setJobTitle(jobTitleRepository.findByName(theRequest.getJobTitle()).orElseThrow(() -> new InvalidRequestException("Please select a valid job title")));
-        employee.setCompany(companyRepository.findByName(theRequest.getCompany()).orElseThrow(() -> new InvalidRequestException("Please select a valid company")));
         employee.setEmailAddress(theRequest.getEmailAddress());
         employee.setSalary(theRequest.getSalary());
         return employeeRepository.save(employee).getDetails();
@@ -45,7 +43,6 @@ final class EmployeeService implements CreateEmployee, FindAllEmployees, UpdateE
         employee.setEmailAddress(request.getEmailAddress());
         employee.setSalary(request.getSalary());
         employee.setJobTitle(jobTitleRepository.findByName(request.getJobTitle()).orElseThrow(() -> new InvalidRequestException("PLease select a valid job title")));
-        employee.setCompany(companyRepository.findByName(request.getCompany()).orElseThrow(() -> new InvalidRequestException("Please select a valid company")));
         return employeeRepository.save(employee).getDetails();
     }
 }

@@ -29,7 +29,6 @@ public class UpdateEmployeeIT {
         String theLastName = "Joe";
         String theEmailAddress = "don.joe@mail.com";
         String theJobTitle = "Software Engineer";
-        String theCompany = "Example Company LLC";
         String theSalary = "150000.00";
         UpdateEmployeeRequest theRequest = new UpdateEmployeeRequest()
                 .withId(theId)
@@ -37,7 +36,6 @@ public class UpdateEmployeeIT {
                 .withLastName(theLastName)
                 .withEmailAddress(theEmailAddress)
                 .withJobTitle(theJobTitle)
-                .withCompany(theCompany)
                 .withSalary(theSalary);
 
         EmployeeDetails theDetails = updateEmployee.executeFor(theRequest);
@@ -47,7 +45,6 @@ public class UpdateEmployeeIT {
         assertThat(theDetails.getLastName()).isEqualTo(theLastName);
         assertThat(theDetails.getEmailAddress()).isEqualTo(theEmailAddress);
         assertThat(theDetails.getJobTitle()).isEqualTo(theJobTitle);
-        assertThat(theDetails.getCompany()).isEqualTo(theCompany);
         assertThat(theDetails.getSalary()).isEqualTo(Double.parseDouble(theSalary));
     }
 

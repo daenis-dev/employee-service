@@ -30,7 +30,6 @@ class EmployeeControllerTest {
     private String lastName;
     private String emailAddress;
     private String jobTitle;
-    private String company;
     private double salary;
     private EmployeeDetails employeeDetails;
 
@@ -52,9 +51,8 @@ class EmployeeControllerTest {
         lastName = "Recard";
         emailAddress = "jimmy.recard@jr.com";
         jobTitle = "Engineer";
-        company = "Some Company";
         salary = 100000.00;
-        employeeDetails = new EmployeeDetails(1, firstName, lastName, emailAddress, jobTitle, company, salary);
+        employeeDetails = new EmployeeDetails(1, firstName, lastName, emailAddress, jobTitle, salary);
 
         mockMvc = MockMvcBuilders
                 .standaloneSetup(new EmployeeController(createEmployee, findAllEmployees, updateEmployee))
@@ -70,7 +68,6 @@ class EmployeeControllerTest {
                         .param("last-name", lastName)
                         .param("email-address", emailAddress)
                         .param("job-title", jobTitle)
-                        .param("company", company)
                         .param("salary", String.valueOf(salary)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id", is(1)))
@@ -78,7 +75,6 @@ class EmployeeControllerTest {
                 .andExpect(jsonPath("$.lastName", is(lastName)))
                 .andExpect(jsonPath("$.emailAddress", is(emailAddress)))
                 .andExpect(jsonPath("$.jobTitle", is(jobTitle)))
-                .andExpect(jsonPath("$.company", is(company)))
                 .andExpect(jsonPath("$.salary", is(salary)));
     }
 
@@ -93,7 +89,6 @@ class EmployeeControllerTest {
                 .andExpect(jsonPath("$[0].lastName", is(lastName)))
                 .andExpect(jsonPath("$[0].emailAddress", is(emailAddress)))
                 .andExpect(jsonPath("$[0].jobTitle", is(jobTitle)))
-                .andExpect(jsonPath("$[0].company", is(company)))
                 .andExpect(jsonPath("$[0].salary", is(salary)));;
     }
 
@@ -106,7 +101,6 @@ class EmployeeControllerTest {
                         .param("last-name", "Recard")
                         .param("email-address", "jimmy.recard@jr.com")
                         .param("job-title", "Engineer")
-                        .param("company", "Some Company")
                         .param("salary", "100000.00"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(1)))
@@ -114,7 +108,6 @@ class EmployeeControllerTest {
                 .andExpect(jsonPath("$.lastName", is(lastName)))
                 .andExpect(jsonPath("$.emailAddress", is(emailAddress)))
                 .andExpect(jsonPath("$.jobTitle", is(jobTitle)))
-                .andExpect(jsonPath("$.company", is(company)))
                 .andExpect(jsonPath("$.salary", is(salary)));
     }
 }

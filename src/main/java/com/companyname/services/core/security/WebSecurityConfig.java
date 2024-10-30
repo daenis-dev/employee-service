@@ -36,8 +36,6 @@ public class WebSecurityConfig {
                             // .requestMatchers(HttpMethod.GET, "/v1/employees/**").hasAnyRole(APP_USER) TODO: Uncomment
                             .requestMatchers(HttpMethod.GET, "/v1/job-titles/**").permitAll() // TODO: remove
                             // .requestMatchers(HttpMethod.GET, "/v1/job-titles/**").hasAnyRole(APP_USER) TODO: Uncomment
-                            .requestMatchers(HttpMethod.GET, "/v1/companies/**").permitAll() // TODO: remove
-                            // .requestMatchers(HttpMethod.GET, "/v1/companies/**").hasAnyRole(APP_USER) TODO: uncomment
                             .anyRequest().authenticated();
                 })
                 .csrf(configurer -> {
