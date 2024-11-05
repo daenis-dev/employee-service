@@ -32,16 +32,11 @@ public class WebSecurityConfig {
                     authorizeRequests
                             .requestMatchers(HttpMethod.GET, "/health").permitAll()
                             .requestMatchers(HttpMethod.POST, "/v1/accounts/**").permitAll()
-                            .requestMatchers(HttpMethod.POST, "/v1/employees/**").permitAll() // TODO: remove
-                            // .requestMatchers(HttpMethod.POST, "/v1/employees/**").hasAnyRole(APP_USER) TODO: Uncomment
-                            .requestMatchers(HttpMethod.GET, "/v1/employees/**").permitAll() // TODO: remove
-                            // .requestMatchers(HttpMethod.GET, "/v1/employees/**").hasAnyRole(APP_USER) TODO: Uncomment
-                            .requestMatchers(HttpMethod.PUT, "/v1/employees/**").permitAll() // TODO: remove
-                            // .requestMatchers(HttpMethod.PUT, "/v1/employees/**").hasAnyRole(APP_USER) TODO: Uncomment
-                            .requestMatchers(HttpMethod.DELETE, "/v1/employees/**").permitAll() // TODO: remove
-                            // .requestMatchers(HttpMethod.DELETE, "/v1/employees/**").hasAnyRole(APP_USER) TODO: Uncomment
-                            .requestMatchers(HttpMethod.GET, "/v1/job-titles/**").permitAll() // TODO: remove
-                            // .requestMatchers(HttpMethod.GET, "/v1/job-titles/**").hasAnyRole(APP_USER) TODO: Uncomment
+                             .requestMatchers(HttpMethod.POST, "/v1/employees/**").hasAnyRole(APP_USER)
+                            .requestMatchers(HttpMethod.GET, "/v1/employees/**").hasAnyRole(APP_USER)
+                            .requestMatchers(HttpMethod.PUT, "/v1/employees/**").hasAnyRole(APP_USER)
+                            .requestMatchers(HttpMethod.DELETE, "/v1/employees/**").hasAnyRole(APP_USER)
+                            .requestMatchers(HttpMethod.GET, "/v1/job-titles/**").hasAnyRole(APP_USER)
                             .anyRequest().authenticated();
                 })
                 .csrf(configurer -> {

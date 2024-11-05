@@ -28,7 +28,7 @@ class UpdateEmployeeRequestTest {
 
     @Test
     void doesNotSetTheIdForNullInput() {
-        String thePredictedMessage = "ID required for employee";
+        String thePredictedMessage = "ID required to update employee";
 
         InvalidRequestException theException = assertThrows(InvalidRequestException.class, () -> updateEmployeeRequest.withId(null));
 
@@ -38,7 +38,7 @@ class UpdateEmployeeRequestTest {
 
     @Test
     void doesNotSetTheIdForEmptyInput() {
-        String thePredictedMessage = "ID required for employee";
+        String thePredictedMessage = "ID required to update employee";
 
         InvalidRequestException theException = assertThrows(InvalidRequestException.class, () -> updateEmployeeRequest.withId(""));
 
@@ -48,7 +48,7 @@ class UpdateEmployeeRequestTest {
 
     @Test
     void doesNotSetTheIdForNonNumericData() {
-        String thePredictedMessage = "ID value must be numeric for employee";
+        String thePredictedMessage = "ID value must be numeric to update employee";
 
         InvalidRequestException theException = assertThrows(InvalidRequestException.class, () -> updateEmployeeRequest.withId("dd33"));
 
@@ -68,7 +68,7 @@ class UpdateEmployeeRequestTest {
 
     @Test
     void doesNotSetTheFirstNameForNullInput() {
-        String thePredictedMessage = "First name required for employee";
+        String thePredictedMessage = "First name required to update employee";
 
         InvalidRequestException theException = assertThrows(InvalidRequestException.class, () -> updateEmployeeRequest.withFirstName(null));
 
@@ -78,7 +78,7 @@ class UpdateEmployeeRequestTest {
 
     @Test
     void doesNotSetTheFirstNameForEmptyInput() {
-        String thePredictedMessage = "First name required for employee";
+        String thePredictedMessage = "First name required to update employee";
 
         InvalidRequestException theException = assertThrows(InvalidRequestException.class, () -> updateEmployeeRequest.withFirstName(""));
 
@@ -98,7 +98,7 @@ class UpdateEmployeeRequestTest {
 
     @Test
     void doesNotSetTheLastNameForNullInput() {
-        String thePredictedMessage = "Last name required for employee";
+        String thePredictedMessage = "Last name required to update employee";
 
         InvalidRequestException theException = assertThrows(InvalidRequestException.class, () -> updateEmployeeRequest.withLastName(null));
 
@@ -108,7 +108,7 @@ class UpdateEmployeeRequestTest {
 
     @Test
     void doesNotSetTheLastNameForEmptyInput() {
-        String thePredictedMessage = "Last name required for employee";
+        String thePredictedMessage = "Last name required to update employee";
 
         InvalidRequestException theException = assertThrows(InvalidRequestException.class, () -> updateEmployeeRequest.withLastName(""));
 
@@ -128,7 +128,7 @@ class UpdateEmployeeRequestTest {
 
     @Test
     void doesNotSetTheEmailAddressForNullInput() {
-        String thePredictedMessage = "Email address required for employee";
+        String thePredictedMessage = "Email address required to update employee";
 
         InvalidRequestException theException = assertThrows(InvalidRequestException.class, () -> updateEmployeeRequest.withEmailAddress(null));
 
@@ -138,7 +138,7 @@ class UpdateEmployeeRequestTest {
 
     @Test
     void doesNotSetTheEmailAddressForEmptyInput() {
-        String thePredictedMessage = "Email address required for employee";
+        String thePredictedMessage = "Email address required to update employee";
 
         InvalidRequestException theException = assertThrows(InvalidRequestException.class, () -> updateEmployeeRequest.withEmailAddress(""));
 
@@ -148,7 +148,7 @@ class UpdateEmployeeRequestTest {
 
     @Test
     void doesNotSetTheEmailAddressForInvalidInput() {
-        String thePredictedMessage = "Email address must be in a valid format for employee";
+        String thePredictedMessage = "Email address must be in a valid format to update employee";
 
         InvalidRequestException theException = assertThrows(InvalidRequestException.class, () -> updateEmployeeRequest.withEmailAddress("jim.recard.mail.com"));
 
@@ -168,7 +168,7 @@ class UpdateEmployeeRequestTest {
 
     @Test
     void doesNotSetTheJobTitleForNullInput() {
-        String thePredictedMessage = "Job title required for employee";
+        String thePredictedMessage = "Job title required to update employee";
 
         InvalidRequestException theException = assertThrows(InvalidRequestException.class, () -> updateEmployeeRequest.withJobTitle(null));
 
@@ -178,7 +178,7 @@ class UpdateEmployeeRequestTest {
 
     @Test
     void doesNotSetTheJobTitleForEmptyInput() {
-        String thePredictedMessage = "Job title required for employee";
+        String thePredictedMessage = "Job title required to update employee";
 
         InvalidRequestException theException = assertThrows(InvalidRequestException.class, () -> updateEmployeeRequest.withJobTitle(""));
 
@@ -210,7 +210,7 @@ class UpdateEmployeeRequestTest {
 
     @Test
     void doesNotSetTheSalaryForNullInput() {
-        String thePredictedMessage = "Salary required for employee";
+        String thePredictedMessage = "Salary required to update employee";
 
         InvalidRequestException theException = assertThrows(InvalidRequestException.class, () -> updateEmployeeRequest.withSalary(null));
 
@@ -220,7 +220,7 @@ class UpdateEmployeeRequestTest {
 
     @Test
     void doesNotSetTheSalaryForEmptyInput() {
-        String thePredictedMessage = "Salary required for employee";
+        String thePredictedMessage = "Salary required to update employee";
 
         InvalidRequestException theException = assertThrows(InvalidRequestException.class, () -> updateEmployeeRequest.withSalary(""));
 
@@ -230,7 +230,7 @@ class UpdateEmployeeRequestTest {
 
     @Test
     void doesNotSetTheSalaryForNonNumericInput() {
-        String thePredictedMessage = "Salary value must be numeric for employee";
+        String thePredictedMessage = "Salary value must be numeric to update employee";
 
         InvalidRequestException theException = assertThrows(InvalidRequestException.class, () -> updateEmployeeRequest.withSalary("INVALID"));
 

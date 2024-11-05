@@ -3,7 +3,6 @@ package com.companyname.services.employees.api.model;
 import com.companyname.services.core.errorhandling.InvalidRequestException;
 import lombok.Getter;
 
-// TODO: test
 @Getter
 public final class DeleteEmployeeRequest {
 

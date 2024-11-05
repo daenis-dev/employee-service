@@ -16,11 +16,11 @@ public final class UpdateEmployeeRequest {
 
     public UpdateEmployeeRequest withId(String id) {
         if (id == null || id.isEmpty()) {
-            throw new InvalidRequestException("ID required for employee");
+            throw new InvalidRequestException("ID required to update employee");
         }
         boolean theIdContainsNonNumericCharacters = !id.matches("\\d*");
         if (theIdContainsNonNumericCharacters) {
-            throw new InvalidRequestException("ID value must be numeric for employee");
+            throw new InvalidRequestException("ID value must be numeric to update employee");
         }
         this.id = Long.parseLong(id);
         return this;
@@ -28,7 +28,7 @@ public final class UpdateEmployeeRequest {
 
     public UpdateEmployeeRequest withFirstName(String firstName) {
         if (firstName == null || firstName.isEmpty()) {
-            throw new InvalidRequestException("First name required for employee");
+            throw new InvalidRequestException("First name required to update employee");
         }
         this.firstName = firstName;
         return this;
@@ -36,7 +36,7 @@ public final class UpdateEmployeeRequest {
 
     public UpdateEmployeeRequest withLastName(String lastName) {
         if (lastName == null || lastName.isEmpty()) {
-            throw new InvalidRequestException("Last name required for employee");
+            throw new InvalidRequestException("Last name required to update employee");
         }
         this.lastName = lastName;
         return this;
@@ -44,10 +44,10 @@ public final class UpdateEmployeeRequest {
 
     public UpdateEmployeeRequest withEmailAddress(String emailAddress) {
         if (emailAddress == null || emailAddress.isEmpty()) {
-            throw new InvalidRequestException("Email address required for employee");
+            throw new InvalidRequestException("Email address required to update employee");
         }
         if (new EmailAddressValidator().isNotValidFormat(emailAddress)) {
-            throw new InvalidRequestException("Email address must be in a valid format for employee");
+            throw new InvalidRequestException("Email address must be in a valid format to update employee");
         }
         this.emailAddress = emailAddress;
         return this;
@@ -55,7 +55,7 @@ public final class UpdateEmployeeRequest {
 
     public UpdateEmployeeRequest withJobTitle(String jobTitle) {
         if (jobTitle == null || jobTitle.isEmpty()) {
-            throw new InvalidRequestException("Job title required for employee");
+            throw new InvalidRequestException("Job title required to update employee");
         }
         this.jobTitle = jobTitle;
         return this;
@@ -63,11 +63,11 @@ public final class UpdateEmployeeRequest {
 
     public UpdateEmployeeRequest withSalary(String salary) {
         if (salary == null || salary.isEmpty()) {
-            throw new InvalidRequestException("Salary required for employee");
+            throw new InvalidRequestException("Salary required to update employee");
         }
         boolean theSalaryContainsNonNumericCharacters = !salary.matches("[\\d]\\d*[.][\\d]\\d*") && !salary.matches("[\\d]\\d*");
         if (theSalaryContainsNonNumericCharacters) {
-            throw new InvalidRequestException("Salary value must be numeric for employee");
+            throw new InvalidRequestException("Salary value must be numeric to update employee");
         }
         this.salary = Double.parseDouble(salary);
         return this;
