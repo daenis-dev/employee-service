@@ -4,7 +4,6 @@ import com.companyname.services.core.errorhandling.InvalidRequestException;
 import com.companyname.services.core.inputvalidation.EmailAddressValidator;
 import lombok.Getter;
 
-// TODO: test
 @Getter
 public class ResetPasswordRequest {
 

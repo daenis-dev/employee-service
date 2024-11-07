@@ -41,7 +41,6 @@ public class AccountController {
                         .withPassword(password)));
     }
 
-    // TODO: test
     @PostMapping("/v1/accounts/reset-password")
     public ResponseEntity<?> resetPassword(@RequestParam("email-address") String emailAddress) {
         resetPassword.sendLinkToResetPassword(new ResetPasswordRequest().withEmailAddress(emailAddress));

@@ -93,7 +93,7 @@ class EmployeeControllerTest {
                 .andExpect(jsonPath("$[0].lastName", is(lastName)))
                 .andExpect(jsonPath("$[0].emailAddress", is(emailAddress)))
                 .andExpect(jsonPath("$[0].jobTitle", is(jobTitle)))
-                .andExpect(jsonPath("$[0].salary", is(salary)));;
+                .andExpect(jsonPath("$[0].salary", is(salary)));
     }
 
     @Test
@@ -113,5 +113,11 @@ class EmployeeControllerTest {
                 .andExpect(jsonPath("$.emailAddress", is(emailAddress)))
                 .andExpect(jsonPath("$.jobTitle", is(jobTitle)))
                 .andExpect(jsonPath("$.salary", is(salary)));
+    }
+
+    @Test
+    void deletesEmployee() throws Exception {
+        mockMvc.perform(delete("/v1/employees/1"))
+                .andExpect(status().isOk());
     }
 }

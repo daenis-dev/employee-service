@@ -107,6 +107,16 @@ class AccountRegistrationRequestTest {
     }
 
     @Test
+    void doesNotSetTheEmailAddressForInvalidInput() {
+        String thePredictedMessage = "Email address must be in a valid format for new account";
+
+        InvalidRequestException theException = assertThrows(InvalidRequestException.class, () -> accountRegistrationRequest.withEmailAddress("jim.recard.mail.com"));
+
+        String theMessageFromTheException = theException.getMessage();
+        assertThat(theMessageFromTheException).isEqualTo(thePredictedMessage);
+    }
+
+    @Test
     void setsPasswordForValidInput() {
         String thePassword = "changeit";
 

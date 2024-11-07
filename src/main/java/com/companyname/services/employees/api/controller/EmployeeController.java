@@ -63,7 +63,6 @@ public final class EmployeeController {
                         .withSalary(salary)));
     }
 
-    // TODO: test
     @DeleteMapping("/v1/employees/{id}")
     public ResponseEntity<?> deleteEmployee(@PathVariable("id") String id) {
         deleteEmployee.executeFor(new DeleteEmployeeRequest().withId(id));

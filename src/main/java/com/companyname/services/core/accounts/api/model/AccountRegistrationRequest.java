@@ -32,7 +32,6 @@ public final class AccountRegistrationRequest {
         if (emailAddress == null || emailAddress.isEmpty()) {
             throw new InvalidRequestException("Email address required for new account");
         }
-        // TODO: test email validation
         if (new EmailAddressValidator().isNotValidFormat(emailAddress)) {
             throw new InvalidRequestException("Email address must be in a valid format for new account");
         }
