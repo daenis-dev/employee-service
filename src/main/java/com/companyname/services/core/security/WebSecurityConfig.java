@@ -31,8 +31,9 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(authorizeRequests -> {
                     authorizeRequests
                             .requestMatchers(HttpMethod.GET, "/health").permitAll()
+                            .requestMatchers(HttpMethod.POST, "/v1/accounts/reset-password").permitAll()
                             .requestMatchers(HttpMethod.POST, "/v1/accounts/**").permitAll()
-                             .requestMatchers(HttpMethod.POST, "/v1/employees/**").hasAnyRole(APP_USER)
+                            .requestMatchers(HttpMethod.POST, "/v1/employees/**").hasAnyRole(APP_USER)
                             .requestMatchers(HttpMethod.GET, "/v1/employees/**").hasAnyRole(APP_USER)
                             .requestMatchers(HttpMethod.PUT, "/v1/employees/**").hasAnyRole(APP_USER)
                             .requestMatchers(HttpMethod.DELETE, "/v1/employees/**").hasAnyRole(APP_USER)

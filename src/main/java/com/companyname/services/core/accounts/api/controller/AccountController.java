@@ -2,8 +2,10 @@ package com.companyname.services.core.accounts.api.controller;
 
 import com.companyname.services.core.accounts.api.behavior.Login;
 import com.companyname.services.core.accounts.api.behavior.RegisterAccount;
+import com.companyname.services.core.accounts.api.behavior.ResetPassword;
 import com.companyname.services.core.accounts.api.model.AccountRegistrationRequest;
 import com.companyname.services.core.accounts.api.model.LoginRequest;
+import com.companyname.services.core.accounts.api.model.ResetPasswordRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,7 @@ public class AccountController {
 
     private final RegisterAccount registerAccount;
     private final Login login;
+    private final ResetPassword resetPassword;
 
     @PostMapping("/v1/accounts")
     public ResponseEntity<?> registerAccount(@RequestParam("first-name") String firstName, @RequestParam("last-name") String lastName, @RequestParam("email-address") String emailAddress, @RequestParam("password") String password, @RequestParam("confirmed-password") String confirmedPassword) {
@@ -36,5 +39,12 @@ public class AccountController {
                 .body(login.forRequest(new LoginRequest()
                         .withEmailAddress(emailAddress)
                         .withPassword(password)));
+    }
+
+    // TODO: test
+    @PostMapping("/v1/accounts/reset-password")
+    public ResponseEntity<?> resetPassword(@RequestParam("email-address") String emailAddress) {
+        resetPassword.sendLinkToResetPassword(new ResetPasswordRequest().withEmailAddress(emailAddress));
+        return ResponseEntity.ok().build();
     }
 }

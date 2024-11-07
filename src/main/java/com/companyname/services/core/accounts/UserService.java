@@ -2,9 +2,8 @@ package com.companyname.services.core.accounts;
 
 import com.companyname.services.core.accounts.api.behavior.Login;
 import com.companyname.services.core.accounts.api.behavior.RegisterAccount;
-import com.companyname.services.core.accounts.api.model.AccountRegistrationRequest;
-import com.companyname.services.core.accounts.api.model.LoginRequest;
-import com.companyname.services.core.accounts.api.model.LoginResponse;
+import com.companyname.services.core.accounts.api.behavior.ResetPassword;
+import com.companyname.services.core.accounts.api.model.*;
 import org.keycloak.admin.client.Keycloak;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -12,8 +11,11 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 import java.time.Duration;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -21,7 +23,7 @@ import static org.springframework.http.MediaType.ALL_VALUE;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 @Service
-public class UserService implements RegisterAccount, Login {
+public class UserService implements RegisterAccount, Login, ResetPassword {
 
     @Value("${keycloak.base-url}")
     private String KEYCLOAK_BASE_URL;
@@ -110,5 +112,45 @@ public class UserService implements RegisterAccount, Login {
                         .block(Duration.ofSeconds(10))))
                 .orElseThrow(() -> new RuntimeException("Error occurred while logging into authorization server"))
                 .mapToLoginResponse();
+    }
+
+    @Override
+    public void sendLinkToResetPassword(ResetPasswordRequest request) {
+        Keycloak keycloak = Keycloak.getInstance(KEYCLOAK_BASE_URL, KEYCLOAK_ADMIN_REALM, KEYCLOAK_ADMIN_USERNAME, KEYCLOAK_ADMIN_PASSWORD, KEYCLOAK_ADMIN_CLIENT_NAME);
+        String accessToken = KEYCLOAK_EMPLOYEE_MANAGEMENT_SERVICE_TOKEN_SCHEMA + " " + keycloak.tokenManager().getAccessTokenString();
+
+        WebClient webClient = WebClient
+                .builder()
+                .baseUrl(KEYCLOAK_EMPLOYEE_MANAGEMENT_SERVICE_BASE_URL)
+                .defaultHeaders(httpHeaders -> {
+                    httpHeaders.add(HttpHeaders.ACCEPT, ALL_VALUE);
+                    httpHeaders.add(HttpHeaders.AUTHORIZATION, accessToken);
+                })
+                .build();
+
+        List<LinkedHashMap> keycloakUserDetails = webClient
+                .get()
+                .uri(uriBuilder -> uriBuilder.path("/users").queryParam("username", request.getEmailAddress()).build())
+                .exchangeToMono(response -> response.bodyToMono(List.class))
+                .block(Duration.ofSeconds(10));
+
+        if (keycloakUserDetails == null || keycloakUserDetails.isEmpty()) {
+            throw new RuntimeException("Cannot retrieve user details because they do not exist");
+        }
+
+        String userId = String.valueOf(keycloakUserDetails.get(0).get("id"));
+
+        webClient
+                .put()
+                .uri(uriBuilder -> uriBuilder.path("/users/" + userId + "/execute-actions-email")
+                        .queryParam("client_id", KEYCLOAK_ADMIN_CLIENT_NAME)
+                        .build())
+                .bodyValue(List.of("UPDATE_PASSWORD"))
+                .retrieve()
+                .onStatus(status -> status.is4xxClientError() || status.is5xxServerError(), response ->
+                        response.bodyToMono(String.class).flatMap(errorBody -> Mono.error(new RuntimeException("Failed to send psasword reset email with message: " + errorBody)))
+                )
+                .bodyToMono(Void.class)
+                .block(Duration.ofSeconds(30));
     }
 }

@@ -1,6 +1,7 @@
 package com.companyname.services.core.accounts.api.model;
 
 import com.companyname.services.core.errorhandling.InvalidRequestException;
+import com.companyname.services.core.inputvalidation.EmailAddressValidator;
 import lombok.Getter;
 
 @Getter
@@ -30,6 +31,10 @@ public final class AccountRegistrationRequest {
     public AccountRegistrationRequest withEmailAddress(String emailAddress) {
         if (emailAddress == null || emailAddress.isEmpty()) {
             throw new InvalidRequestException("Email address required for new account");
+        }
+        // TODO: test email validation
+        if (new EmailAddressValidator().isNotValidFormat(emailAddress)) {
+            throw new InvalidRequestException("Email address must be in a valid format for new account");
         }
         this.emailAddress = emailAddress;
         return this;
