@@ -48,7 +48,6 @@ final class EmployeeService implements CreateEmployee, FindAllEmployees, UpdateE
         return employeeRepository.save(employee).getDetails();
     }
 
-    // TODO: IT
     @Override
     public void executeFor(DeleteEmployeeRequest request) {
         employeeRepository.deleteById(request.getId());

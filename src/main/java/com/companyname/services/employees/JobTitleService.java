@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-// TODO: IT
 @Service
 @RequiredArgsConstructor
 class JobTitleService implements FindAllJobTitles {

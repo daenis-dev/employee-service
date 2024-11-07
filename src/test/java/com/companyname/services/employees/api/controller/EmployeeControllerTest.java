@@ -1,4 +1,4 @@
-package com.companyname.services.employees.api;
+package com.companyname.services.employees.api.controller;
 
 import com.companyname.services.employees.api.behavior.CreateEmployee;
 import com.companyname.services.employees.api.behavior.DeleteEmployee;
