@@ -21,5 +21,5 @@ INSERT INTO job_titles (name) VALUES ('DevOps Engineer');
 INSERT INTO job_titles (name) VALUES ('Business Analyst');
 INSERT INTO job_titles (name) VALUES ('Project Manager');
 
-INSERT INTO employees (first_name, last_name, email_address, salary, job_title_id) VALUES ('Jon', 'Doe', 'jon.doe@mail.com', 130000.00, (SELECT id FROM job_titles WHERE job_titles.name LIKE 'Software Engineer');
+INSERT INTO employees (first_name, last_name, email_address, salary, job_title_id) VALUES ('Jon', 'Doe', 'jon.doe@mail.com', 130000.00, (SELECT id FROM job_titles WHERE job_titles.name LIKE 'Software Engineer'));
 INSERT INTO employees (first_name, last_name, email_address, salary, job_title_id) VALUES ('Bob', 'James', 'bob.james@mail.com', 140000.00, (SELECT id FROM job_titles WHERE job_titles.name LIKE 'Project Manager'));
